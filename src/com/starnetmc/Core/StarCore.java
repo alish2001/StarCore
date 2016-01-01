@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Created by Ali on 1/1/2016 at 4:10 PM.
+ * Ali is responsible for this class.
  */
 public class StarCore extends JavaPlugin {
 
