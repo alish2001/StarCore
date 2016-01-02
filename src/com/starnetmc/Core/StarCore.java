@@ -6,19 +6,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Created by Ali on 1/1/2016 at 4:10 PM.
- */
+*/
 
 public class StarCore extends JavaPlugin {
 
     @Override
     public void onEnable(){
         StarModuleRegistry registry = new StarModuleRegistry();
-        StarModuleManager.setModuleRegistry(registry);
-        StarModuleManager.enable();
+        StarModuleManager.init(new StarModuleManager(this, registry));
+        StarModuleManager.get().enable();
     }
-    
+
     @Override
     public void onDisable() {
-        StarModuleManager.disable();
+        StarModuleManager.get().disable();
     }
 }

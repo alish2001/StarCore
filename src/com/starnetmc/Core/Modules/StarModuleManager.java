@@ -8,34 +8,49 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class StarModuleManager {
 
-    public static JavaPlugin core;
-    public static StarModuleRegistry registry;
+    public static StarModuleManager instance;
 
-    public static void enable(){
+    private JavaPlugin core;
+    private StarModuleRegistry registry;
+
+    public StarModuleManager(JavaPlugin core, StarModuleRegistry registry){
+        this.core = core;
+        this.registry = registry;
+    }
+
+    public static void init(StarModuleManager manager){
+        instance = manager;
+    }
+
+    public static StarModuleManager get(){
+        return instance;
+    }
+
+    public void enable(){
         for (StarModule m : registry.getModuleRegistry()){
             m.startup();
         }
     }
 
-    public static void disable(){
+    public void disable(){
         for (StarModule m : registry.getModuleRegistry()){
             m.shutdown();
         }
     }
 
-    public static JavaPlugin getCore(){
+    public JavaPlugin getCore(){
         return core;
     }
 
-    public static void setCore(JavaPlugin newCore){
+    public void setCore(JavaPlugin newCore){
         core = newCore;
     }
 
-    public static StarModuleRegistry getModuleRegistry(){
+    public StarModuleRegistry getModuleRegistry(){
         return registry;
     }
 
-    public static void setModuleRegistry(StarModuleRegistry newRegistry){
+    public void setModuleRegistry(StarModuleRegistry newRegistry){
         registry = newRegistry;
     }
 
