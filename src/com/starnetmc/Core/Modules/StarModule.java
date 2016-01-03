@@ -1,8 +1,13 @@
 package com.starnetmc.Core.Modules;
 
+import com.starnetmc.Core.CMD.CommandCenter;
+import com.starnetmc.Core.CMD.ICommand;
+import com.starnetmc.Core.Utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ali on 1/1/2016 at 5:35 PM at 8:32 PM.
@@ -12,6 +17,7 @@ public class StarModule implements Listener {
 
     private String moduleName;
     private double moduleVersion;
+    private ArrayList<ICommand> cmds;
 
     public StarModule(String moduleName, double moduleVersion){
         this.moduleName = moduleName;
@@ -19,23 +25,41 @@ public class StarModule implements Listener {
     }
 
     public void startup(){
-        Bukkit.getServer().getPluginManager().registerEvents(this, StarModuleManager.getCore());
+        Bukkit.getServer().getPluginManager().registerEvents(this, StarModuleManager.get().getCore());
+        for (ICommand cmd : cmds){
+            CommandCenter.get().addCommand(cmd);
+        }
     }
 
     public void shutdown(){
         HandlerList.unregisterAll(this);
+        for (ICommand cmd : cmds){
+            CommandCenter.get().removeCommand(cmd );
+        }
     }
 
     public void onEnable(){
 
     }
 
-    public void onDisable(){
+    public void onDisable() {
 
     }
 
-    public void registerCMD() {
+    public void addCommand(ICommand command){
+        if (!cmds.contains(command)){
+            cmds.add(command);
+        }
+    }
 
+    public void removeCommand(ICommand command){
+        if (cmds.contains(command)){
+            cmds.remove(command);
+        }
+    }
+
+    public void log(String msg){
+        Logger.log("<" + moduleName + "> " + msg);
     }
 
     public String getName(){
@@ -44,5 +68,9 @@ public class StarModule implements Listener {
 
     public double getVersion(){
         return moduleVersion;
+    }
+
+    public ArrayList<ICommand> getCmds(){
+        return cmds;
     }
 }

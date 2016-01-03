@@ -1,5 +1,6 @@
 package com.starnetmc.Core;
 
+import com.starnetmc.Core.CMD.CommandCenter;
 import com.starnetmc.Core.Modules.StarModuleManager;
 import com.starnetmc.Core.Modules.StarModuleRegistry;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,6 +13,11 @@ public class StarCore extends JavaPlugin {
 
     @Override
     public void onEnable(){
+
+        //Command System Init
+        CommandCenter.init(this);
+
+        //Module System Init
         StarModuleRegistry registry = new StarModuleRegistry();
         StarModuleManager.init(new StarModuleManager(this, registry));
         StarModuleManager.get().enable();

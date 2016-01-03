@@ -1,5 +1,6 @@
 package com.starnetmc.Core.Modules;
 
+import com.starnetmc.Core.Utils.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -20,6 +21,7 @@ public class StarModuleManager {
 
     public static void init(StarModuleManager manager){
         instance = manager;
+        Logger.log("<StarModuleManager> Initializing Module System.");
     }
 
     public static StarModuleManager get(){
@@ -30,12 +32,16 @@ public class StarModuleManager {
         for (StarModule m : registry.getModuleRegistry()){
             m.startup();
         }
+
+        Logger.log("<StarModuleManager> Module System Enabled.");
     }
 
     public void disable(){
         for (StarModule m : registry.getModuleRegistry()){
             m.shutdown();
         }
+
+        Logger.log("<StarModuleManager> Module System Disabled.");
     }
 
     public JavaPlugin getCore(){
