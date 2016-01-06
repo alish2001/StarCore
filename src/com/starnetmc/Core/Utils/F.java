@@ -1,5 +1,6 @@
 package com.starnetmc.Core.Utils;
 
+import com.starnetmc.Core.Modules.Database.Rank;
 import org.bukkit.ChatColor;
 
 /**
@@ -79,5 +80,21 @@ public class F {
     public static String underRed = RED + UNDER + "";
     public static String underWhite = WHITE + UNDER + "";
     public static String underYellow = YELLOW + UNDER + "";
+
+    public static String info(String moduleName, String msg){
+        return AQUA + "<" + moduleName + "> " + GREEN + msg;
+    }
+
+    public static String error(String moduleName, String msg){
+        return AQUA + "<" + moduleName + "> " + RED + msg;
+    }
+
+    public static String listTop(String listName){
+        return AQUA + "" + ChatColor.STRIKETHROUGH + "-------------- " + YELLOW + listName + AQUA + "" + ChatColor.STRIKETHROUGH + " -------------";
+    }
+
+    public static String cmdList(String command, String desc, Rank rank){
+        return YELLOW + command + AQUA + "-" + YELLOW + desc + AQUA + " | " + rank.getColor() + BOLD + rank.getTag(false);
+    }
 
 }

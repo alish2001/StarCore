@@ -42,7 +42,7 @@ public class CommandCenter implements Listener{
     public void runCommands(PlayerCommandPreprocessEvent e) {
 
         String commandName = e.getMessage().substring(1);
-                String[] args = null;
+        String[] args = null;
 
                 if (commandName.contains(" ")) {
                     commandName = commandName.split(" ")[0];
@@ -56,8 +56,7 @@ public class CommandCenter implements Listener{
                 if (command != null) {
 
                     if (!(getRank(e.getPlayer()).compareTo(command.getRequiredRank()) <= 0)) {
-                        //e.getPlayer().sendMessage(F.error("Permissions", "Such Permission, much not [ " + command.getRequiredRank().toString() + " ] Rank."));
-                        //TODO ADD NO PERM MSG.
+                        e.getPlayer().sendMessage(F.error("Permissions", "Such Permission, much not [ " + command.getRequiredRank().toString() + " ] Rank."));
                         return;
             }
 

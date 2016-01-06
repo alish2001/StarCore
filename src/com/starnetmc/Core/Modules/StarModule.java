@@ -18,10 +18,14 @@ public class StarModule implements Listener {
     private String moduleName;
     private double moduleVersion;
     private ArrayList<ICommand> cmds;
+    private boolean enabled;
 
     public StarModule(String moduleName, double moduleVersion){
         this.moduleName = moduleName;
         this.moduleVersion = moduleVersion;
+    }
+
+    public StarModule(){
     }
 
     public void startup(){
@@ -29,13 +33,21 @@ public class StarModule implements Listener {
         for (ICommand cmd : cmds){
             CommandCenter.get().addCommand(cmd);
         }
+
+        onEnable();
+        setState(true);
+        log("has been started up!");
     }
 
     public void shutdown(){
         HandlerList.unregisterAll(this);
         for (ICommand cmd : cmds){
-            CommandCenter.get().removeCommand(cmd );
+            CommandCenter.get().removeCommand(cmd);
         }
+
+        onDisable();
+        setState(false);
+        log("has been shutdown.");
     }
 
     public void onEnable(){
@@ -58,6 +70,15 @@ public class StarModule implements Listener {
         }
     }
 
+    public void setState(boolean enabled){
+        this.enabled = enabled;
+        if (enabled){
+            log("The module state has been changed to enabled.");
+        } else {
+            log("The module state has been changed to disabled.");
+        }
+    }
+
     public void log(String msg){
         Logger.log("<" + moduleName + "> " + msg);
     }
@@ -72,5 +93,9 @@ public class StarModule implements Listener {
 
     public ArrayList<ICommand> getCmds(){
         return cmds;
+    }
+
+    public boolean isEnabled(){
+        return enabled;
     }
 }

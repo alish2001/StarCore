@@ -48,6 +48,10 @@ public enum Rank {
         }
     }
 
+    public ChatColor getColor(){
+        return color;
+    }
+
     public static Rank getRankFromString(String rank){
         Rank finalRank = DEFAULT;
 
