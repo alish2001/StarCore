@@ -18,6 +18,23 @@ public class ModuleControllerCMD extends CommandBase<ModuleController> {
     }
 
     public void execute(Player p, String[] args){
+
+        if (args.length < 1){
+            help(p);
+            return;
+        }
+
+        if (args[0].equalsIgnoreCase("List") || args[0].equalsIgnoreCase("Registry")){
+
+            p.sendMessage(F.listTop("StarRegistry"));
+
+            for (StarModule s : StarModuleManager.get().getModuleRegistry().getModules()){
+                String info = F.YELLOW + s.getName() + F.boldAqua + " | " + F.YELLOW + "V" + s.getVersion();
+                p.sendMessage(info);
+            }
+            return;
+        }
+
         if (args.length < 2){
             help(p);
             return;
@@ -38,12 +55,11 @@ public class ModuleControllerCMD extends CommandBase<ModuleController> {
             return;
         }
 
-        if (args[0].equalsIgnoreCase("Disable")){
-            if (!StarModuleManager.get().getModuleRegistry().doesExist(args[1])){
+        if (args[0].equalsIgnoreCase("Disable")) {
+            if (!StarModuleManager.get().getModuleRegistry().doesExist(args[1])) {
                 p.sendMessage(F.error("ModuleController", "Sorry but this module doesn't exist in this StarModuleRegistry."));
                 return;
-            } else
-            if (StarModuleManager.get().getModuleRegistry().getModule(args[1]).isEnabled()){
+            } else if (!StarModuleManager.get().getModuleRegistry().getModule(args[1]).isEnabled()) {
                 p.sendMessage(F.error("ModuleController", "This module is already disabled!"));
                 return;
             }
@@ -53,8 +69,8 @@ public class ModuleControllerCMD extends CommandBase<ModuleController> {
             return;
         }
 
-        if (args[0].equalsIgnoreCase("Info")){
-            if (!StarModuleManager.get().getModuleRegistry().doesExist(args[1])){
+        if (args[0].equalsIgnoreCase("Info")) {
+            if (!StarModuleManager.get().getModuleRegistry().doesExist(args[1])) {
                 p.sendMessage(F.error("ModuleController", "Sorry but this module doesn't exist in this StarModuleRegistry."));
                 return;
             }
@@ -65,12 +81,12 @@ public class ModuleControllerCMD extends CommandBase<ModuleController> {
             p.sendMessage(F.YELLOW + "Registered Name: " + m.getName());
             p.sendMessage(F.YELLOW + "Current Version: " + m.getVersion());
 
-            if (m.isEnabled()){
+            if (m.isEnabled()) {
                 p.sendMessage(F.YELLOW + "Current State: " + F.boldGreen + "ENABLED!");
             } else {
                 p.sendMessage(F.YELLOW + "Current State: " + F.boldRed + "DISABLED!");
             }
-            
+
             return;
         }
     }
@@ -79,6 +95,7 @@ public class ModuleControllerCMD extends CommandBase<ModuleController> {
         p.sendMessage(F.listTop("Module Controller"));
         p.sendMessage(F.cmdList("/ModuleController Enable <Module Name>", "Enables the module if it is not already enabled.", Rank.DEV));
         p.sendMessage(F.cmdList("/ModuleController Disable <Module Name>", "Disables the module if it is not already disabled.", Rank.DEV));
+        p.sendMessage(F.cmdList("/ModuleController List", "Lists all the current modules in the registry.", Rank.DEV));
         p.sendMessage(F.cmdList("/ModuleController Info <Module Name>", "Lists info about the module.", Rank.DEV));
     }
 }
