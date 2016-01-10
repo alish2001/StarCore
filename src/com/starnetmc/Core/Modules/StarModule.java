@@ -2,6 +2,7 @@ package com.starnetmc.Core.Modules;
 
 import com.starnetmc.Core.CMD.CommandCenter;
 import com.starnetmc.Core.CMD.ICommand;
+import com.starnetmc.Core.Events.ModuleStateChangeEvent;
 import com.starnetmc.Core.Utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -40,6 +41,7 @@ public class StarModule implements Listener {
 
         onEnable();
         setState(true);
+        Bukkit.getServer().getPluginManager().callEvent(new ModuleStateChangeEvent(this));
         log("has been started up!");
     }
 
@@ -51,6 +53,7 @@ public class StarModule implements Listener {
 
         onDisable();
         setState(false);
+        Bukkit.getServer().getPluginManager().callEvent(new ModuleStateChangeEvent(this));
         log("has been shutdown.");
     }
 

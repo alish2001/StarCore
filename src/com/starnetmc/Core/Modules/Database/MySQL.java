@@ -1,6 +1,6 @@
 package com.starnetmc.Core.Modules.Database;
 
-import org.bukkit.Bukkit;
+import com.starnetmc.Core.Utils.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,10 +34,10 @@ public class MySQL {
         }
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://158.69.209.171:3306/StarNet", "external", "WTeLtzYYszm343QD");
+            connection = DriverManager.getConnection("jdbc:mysql://158.69.209.171:3306/StarNet?zeroDateTimeBehavior=convertToNull", "external", "WTeLtzYYszm343QD");
             DBQuery.st = connection.createStatement();
             DBQuery.pconn = connection;
-            Bukkit.getServer().getLogger().info("Database Connected!");
+            Logger.log("<Database> Database Connected!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
