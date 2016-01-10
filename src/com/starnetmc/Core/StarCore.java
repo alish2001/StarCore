@@ -1,7 +1,8 @@
 package com.starnetmc.Core;
 
 import com.starnetmc.Core.CMD.CommandCenter;
-import com.starnetmc.Core.Modules.Database.ExampleModule;
+import com.starnetmc.Core.Modules.HubStabilizer.HubStabilizer;
+import com.starnetmc.Core.Modules.ModuleController.ModuleController;
 import com.starnetmc.Core.Modules.StarModuleManager;
 import com.starnetmc.Core.Modules.StarModuleRegistry;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,15 +19,18 @@ public class StarCore extends JavaPlugin {
         //Command System Init
         CommandCenter.init(this);
 
-        //Module System Init
+        //Registry
         StarModuleRegistry registry = new StarModuleRegistry();
-        //registry.addModule(new ExampleModule());
+        registry.addModule(new ModuleController());
+        registry.addModule(new HubStabilizer());
+
+        //Module System Init
         StarModuleManager.init(new StarModuleManager(this, registry));
         StarModuleManager.get().enable();
     }
 
     @Override
-    public void onDisable() {
+    public void onDisable(){
         StarModuleManager.get().disable();
     }
 }

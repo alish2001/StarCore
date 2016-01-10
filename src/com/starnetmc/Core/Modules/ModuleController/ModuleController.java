@@ -9,7 +9,7 @@ import com.starnetmc.Core.Modules.StarModule;
 public class ModuleController extends StarModule {
 
     public ModuleController(){
-        super("Module Controller", 1.0);
+        super("ModuleController", 1.0);
 
         addCommand(new ModuleControllerCMD(this));
     }
