@@ -23,9 +23,13 @@ public class StarModule implements Listener {
     public StarModule(String moduleName, double moduleVersion){
         this.moduleName = moduleName;
         this.moduleVersion = moduleVersion;
+        this.cmds = new ArrayList<ICommand>();
     }
 
     public StarModule(){
+        this.moduleName = "NOT FOUND";
+        this.moduleVersion = 0.0;
+        this.cmds = new ArrayList<ICommand>();
     }
 
     public void startup(){
