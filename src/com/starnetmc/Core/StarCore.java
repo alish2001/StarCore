@@ -1,6 +1,7 @@
 package com.starnetmc.Core;
 
 import com.starnetmc.Core.CMD.CommandCenter;
+import com.starnetmc.Core.Modules.Heartbeat.Heartbeat;
 import com.starnetmc.Core.Modules.HubStabilizer.HubStabilizer;
 import com.starnetmc.Core.Modules.ModuleController.ModuleController;
 import com.starnetmc.Core.Modules.StarModuleManager;
@@ -22,6 +23,7 @@ public class StarCore extends JavaPlugin {
         //Registry
         StarModuleRegistry registry = new StarModuleRegistry();
         registry.addModule(new ModuleController());
+        registry.addModule(new Heartbeat());
         registry.addModule(new HubStabilizer());
 
         //Module System Init
