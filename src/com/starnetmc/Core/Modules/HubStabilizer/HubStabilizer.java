@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.help.HelpTopic;
@@ -31,6 +32,8 @@ public class HubStabilizer extends StarModule {
         explosionController = true;
         dropController = true;
         loginController= true;
+        weatherController = true;
+        inventoryController = false;
     }
 
     @Override
@@ -40,6 +43,8 @@ public class HubStabilizer extends StarModule {
         explosionController = false;
         dropController = false;
         loginController= false;
+        weatherController = false;
+        inventoryController = false;
     }
 
     private boolean damageController;
@@ -48,6 +53,7 @@ public class HubStabilizer extends StarModule {
     private boolean dropController;
     private boolean loginController;
     private boolean weatherController;
+    private boolean inventoryController;
 
     public void setDamage(boolean b){
         damageController = b;
@@ -71,6 +77,10 @@ public class HubStabilizer extends StarModule {
 
     public void setWeather(boolean b){
         weatherController = b;
+    }
+
+    public void setInventory(boolean b){
+        inventoryController = b;
     }
 
     public boolean getDamage(){
@@ -97,6 +107,10 @@ public class HubStabilizer extends StarModule {
         return weatherController;
     }
 
+    public boolean getInventory(){
+        return inventoryController;
+    }
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         if (!loginController) return;
@@ -111,6 +125,12 @@ public class HubStabilizer extends StarModule {
     public void onLeave(PlayerQuitEvent e){
         if (!loginController) return;
         e.setQuitMessage(F.boldAqua + "<" + F.boldRed + "-" + F.boldAqua + ">" + ChatColor.RESET + F.YELLOW + " " + e.getPlayer().getName());
+    }
+
+    @EventHandler
+    public void onInv(InventoryClickEvent e){
+        if (!inventoryController) return;
+        e.setCancelled(true);
     }
 
     @EventHandler

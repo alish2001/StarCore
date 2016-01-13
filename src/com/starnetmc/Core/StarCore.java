@@ -4,6 +4,7 @@ import com.starnetmc.Core.CMD.CommandCenter;
 import com.starnetmc.Core.Modules.Heartbeat.Heartbeat;
 import com.starnetmc.Core.Modules.HubStabilizer.HubStabilizer;
 import com.starnetmc.Core.Modules.ModuleController.ModuleController;
+import com.starnetmc.Core.Modules.ServerSorter.ServerSorter;
 import com.starnetmc.Core.Modules.StarModuleManager;
 import com.starnetmc.Core.Modules.StarModuleRegistry;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,7 @@ public class StarCore extends JavaPlugin {
         registry.addModule(new ModuleController());
         registry.addModule(new Heartbeat());
         registry.addModule(new HubStabilizer());
+        registry.addModule(new ServerSorter());
 
         //Module System Init
         StarModuleManager.init(new StarModuleManager(this, registry));

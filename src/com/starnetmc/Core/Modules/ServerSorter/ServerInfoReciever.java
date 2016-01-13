@@ -18,7 +18,7 @@ public class ServerInfoReciever implements PluginMessageListener {
 		String subChannel = data.readUTF();
 		
 		if (subChannel.equalsIgnoreCase("GetServers")){
-	    Logger.log("<Server Sorter> Server list recived. Organizing...");
+	    Logger.log("<Server Sorter> Server list received. Organizing...");
 		String[] serverArray = data.readUTF().split(", ");
 		
 		 for (String server : serverArray){
