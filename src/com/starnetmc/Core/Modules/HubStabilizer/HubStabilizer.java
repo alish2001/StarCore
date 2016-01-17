@@ -22,7 +22,7 @@ import org.bukkit.help.HelpTopic;
 public class HubStabilizer extends StarModule {
 
     public HubStabilizer(){
-        super("HubStablilizer", 1.0);
+        super("HubStabilizer", 1.0);
     }
 
     @Override

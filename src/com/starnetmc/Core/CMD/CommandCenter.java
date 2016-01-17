@@ -65,7 +65,6 @@ public class CommandCenter implements Listener{
 
             e.setCancelled(true);
         } else {
-            e.getPlayer().sendMessage("Unknown Command. Type '/help' u skrub.");
         }
 
     }
@@ -86,7 +85,7 @@ public class CommandCenter implements Listener{
 
     public Rank getRank(Player player){
         //TODO ADD ACCOUNT MANAGER RANK SUPPORT.
-        return Rank.DEFAULT;
+        return Rank.OWNER;
     }
 
 }

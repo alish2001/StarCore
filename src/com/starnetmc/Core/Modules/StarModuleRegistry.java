@@ -51,7 +51,7 @@ public class StarModuleRegistry {
     }
 
     public StarModule getModule(String id){
-        StarModule module = registry.get(id);
+        StarModule module = registry.get(id.toLowerCase());
         return module;
     }
 
