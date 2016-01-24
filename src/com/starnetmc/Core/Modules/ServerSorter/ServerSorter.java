@@ -108,7 +108,7 @@ public class ServerSorter extends StarModule {
             public void run() {
                 fetchServerIPs();
             }
-        }.runTaskLater(StarModuleManager.get().getCore(), Tickifier.tickify(10, Tickifier.Time.SECONDS));
+        }.runTaskLater(StarModuleManager.get().getCore(), Tickifier.tickify(1, Tickifier.Time.SECONDS));
     }
 
     public void fetchServerIPs(){

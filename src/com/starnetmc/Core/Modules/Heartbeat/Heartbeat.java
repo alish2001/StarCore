@@ -3,6 +3,7 @@ package com.starnetmc.Core.Modules.Heartbeat;
 import com.starnetmc.Core.Modules.StarModule;
 import com.starnetmc.Core.Modules.StarModuleManager;
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
@@ -18,7 +19,7 @@ public class Heartbeat extends StarModule {
     @Override
     public void onEnable(){
         Heart heart = new Heart(StarModuleManager.get().getCore());
-        heartbeatTaskID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(StarModuleManager.get().getCore(), heart, 0L, 100L);
+        heartbeatTaskID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(StarModuleManager.get().getCore(), heart, 0L, 1L);
     }
 
     @Override

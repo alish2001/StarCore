@@ -53,7 +53,7 @@ public class Sharingan extends StarModule {
         ParticleEffect.SMOKE_LARGE.display(0.15f, 0.2f, 0.15f, 0f, 78, amaterasu.clone().add(0, 0, 1), 128.0);
         ParticleEffect.SMOKE_LARGE.display(0.20f, 0.25f, 0.20f, 0f, 78, amaterasu, 128.0);
         ParticleEffect.SMOKE_LARGE.display(0.15f, 0.2f, 0.15f, 0f, 78, amaterasu.clone().add(1, 0, 0), 128.0);
-        target.setFireTicks(40);
+        //target.setFireTicks(40);
     }
 
     private Entity getBestTarget(Player player) {

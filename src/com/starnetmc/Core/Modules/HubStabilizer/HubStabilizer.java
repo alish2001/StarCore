@@ -1,8 +1,8 @@
 package com.starnetmc.Core.Modules.HubStabilizer;
 
-import com.starnetmc.Core.Modules.Database.Rank;
 import com.starnetmc.Core.Modules.StarModule;
 import com.starnetmc.Core.Utils.F;
+import com.starnetmc.Core.Utils.NameTags.UNameTag;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
@@ -13,7 +13,6 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
-import org.bukkit.help.HelpTopic;
 
 /**
  * Created by Ali on 1/10/2016 at 5:13 PM.
@@ -118,6 +117,7 @@ public class HubStabilizer extends StarModule {
         player.setMaxHealth(20D);
         player.setFoodLevel(20);
         player.setHealthScale(20D);
+        UNameTag.setNameTag(player, F.boldDR + "DANK MEMER " + ChatColor.RESET, F.boldAqua + " 2K16");
         e.setJoinMessage(F.boldAqua + "<" + F.boldGreen + "+" + F.boldAqua + ">" + ChatColor.RESET + F.YELLOW + " " + player.getName());
     }
 
